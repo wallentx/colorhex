@@ -1,0 +1,23 @@
+#!/usr/bin/env python2
+
+"""Accepts #RRGGBB hex value from stdin, or input passed as argument"""
+
+import sys
+from fabulous.color import bg256
+from fabulous.color import fg256
+
+
+def colorarg(cinput):
+    """Colorizes input and prints"""
+    bgcol = bg256(cinput, "        ")
+    coltext = fg256(cinput, cinput)
+    string = coltext + " " + bgcol
+    print string
+
+
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        for line in sys.stdin:
+            colorarg(line.strip())
+    else:
+        colorarg(sys.argv[1])
